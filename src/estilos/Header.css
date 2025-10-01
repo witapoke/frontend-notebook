@@ -1,0 +1,23 @@
+.headerMainContainer {
+  background-color: #1b3a53;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.headerTitle {
+  font-size: 40px;
+  padding: 10px;
+  font-weight: 600;
+  color: white;
+}
+
+.loginBtn {
+  border: none;
+  width: 130px;
+  height: 45px;
+  border-radius: 10px;
+  font-weight: 600;
+}

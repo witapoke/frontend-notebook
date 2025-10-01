@@ -1,0 +1,42 @@
+.courseCardContainer {
+  background-color: #1b3a53;
+  width: 700px;
+  height: 300px;
+  border: 2px solid black;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid white;
+  border-radius: 10px;
+}
+
+.courseCardImg {
+  height: 80%;
+  object-fit: contain;
+  padding: 10px;
+}
+
+.descriptionCourse {
+  width: 100%;
+  height: 65%;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid gray;
+}
+
+.courseCardDescription {
+  padding: 10px;
+  font-size: 20px;
+  color: white;
+  margin-top: 20px;
+}
+
+.courseCardTitle {
+  margin: 10px;
+  margin-left: 50px;
+}
+
+.linksito {
+  text-decoration: none;
+  color: black;
+}
