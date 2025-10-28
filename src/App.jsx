@@ -1,46 +1,41 @@
-import { useEffect, useState } from 'react'
+import { useContext, useMemo } from 'react'
 import './App.css'
-import axios from 'axios'
 import SelectedCourse from './pages/SelectedCourse'
 import {
-  Routes,
   Route,
   createBrowserRouter,
   createRoutesFromElements,
-  Router,
   RouterProvider
 } from 'react-router-dom'
 import RootLayout from './pages/RootLayout'
-import CourseCard from './componentes/CourseCard'
 import Courses from './pages/Courses'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
+import { AuthContext } from './context/AuthContext'
+import { CoursesLoader } from './utils/CoursesLoader'
 
 const App = () => {
-  const [courses, setCourses] = useState([])
+  const { state } = useContext(AuthContext)
 
-  useEffect(() => {
-    const getData = async () => {
-      const req = await axios.get('http://localhost:5000/courses')
-      setCourses(req.data)
-    }
-
-    getData()
-  }, [])
-
-  const router = createBrowserRouter(
-    createRoutesFromElements(
-      <Route path='/' element={<RootLayout courses={courses} />}>
-        <Route index element={<Courses courses={courses} />}></Route>
-        <Route
-          path='/courses/:selectedCourse'
-          element={<SelectedCourse />}
-        ></Route>
-        <Route path='/login' element={<Login />}></Route>
-        <Route path='/profile' element={<Profile />}></Route>
-      </Route>
+  const router = useMemo(() => {
+    return createBrowserRouter(
+      createRoutesFromElements(
+        <Route path='/' element={<RootLayout />}>
+          <Route
+            index
+            element={<Courses />}
+            loader={() => CoursesLoader(state.jwt)}
+          ></Route>
+          <Route
+            path='/courses/:selectedCourse'
+            element={<SelectedCourse />}
+          ></Route>
+          <Route path='/login' element={<Login />}></Route>
+          <Route path='/profile' element={<Profile />}></Route>
+        </Route>
+      )
     )
-  )
+  }, [state.jwt])
 
   return (
     <div className='appContainer'>

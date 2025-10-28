@@ -38,5 +38,6 @@
 
 .linksito {
   text-decoration: none;
+  width: fit-content;
   color: black;
 }
