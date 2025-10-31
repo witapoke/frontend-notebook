@@ -7,7 +7,7 @@ const Header = () => {
   const { state, dispatch } = useContext(AuthContext)
 
   const handleLogin = () => {
-    window.location = 'http://localhost:5000/auth/google'
+    window.location.assign('http://localhost:5000/auth/google')
   }
 
   const handleLogOut = () => {
@@ -21,11 +21,11 @@ const Header = () => {
       </Link>
 
       {state.isAuthenticated ? (
-        <button className='loginBtn' onClick={() => handleLogOut()}>
+        <button className='loginBtn' onClick={handleLogOut}>
           Cerrar sesión
         </button>
       ) : (
-        <button className='loginBtn' onClick={() => handleLogin()}>
+        <button className='loginBtn' onClick={handleLogin}>
           Iniciar sesión
         </button>
       )}

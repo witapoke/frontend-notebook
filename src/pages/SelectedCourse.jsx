@@ -1,28 +1,17 @@
-import { useEffect, useState } from 'react'
 import '../estilos/selectedCourse.css'
+import { useLoaderData } from 'react-router-dom'
 
 const SelectedCourse = () => {
-  const [course, setCourse] = useState({})
-
-  useEffect(() => {
-    const getCourseFromStorage = () => {
-      const courseFromStorage = JSON.parse(localStorage.getItem('course'))
-      setCourse(courseFromStorage)
-    }
-
-    getCourseFromStorage()
-  }, [])
-
-  console.log(course)
+  const { course } = useLoaderData()
 
   return (
     <div className='selectedCourseContainer'>
       <div className='courseCardContainer'>
         <div className='descriptionCourse'>
-          <img src={course.thumbnail} className='courseCardImg' />
-          <h1 className='courseCardTitle'>{course.title}</h1>
+          <img src={course?.thumbnail} className='courseCardImg' />
+          <h1 className='courseCardTitle'>{course?.title}</h1>
         </div>
-        <p className='courseCardDescription'>{course.description}</p>
+        <p className='courseCardDescription'>{course?.description}</p>
       </div>
     </div>
   )

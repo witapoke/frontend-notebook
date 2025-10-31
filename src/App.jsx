@@ -1,6 +1,5 @@
 import { useContext, useMemo } from 'react'
 import './App.css'
-import SelectedCourse from './pages/SelectedCourse'
 import {
   Route,
   createBrowserRouter,
@@ -8,11 +7,12 @@ import {
   RouterProvider
 } from 'react-router-dom'
 import RootLayout from './pages/RootLayout'
+import SelectedCourse from './pages/SelectedCourse'
 import Courses from './pages/Courses'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
 import { AuthContext } from './context/AuthContext'
-import { CoursesLoader } from './utils/CoursesLoader'
+import { CourseByIdLoader, CoursesLoader } from './utils/CoursesLoader'
 
 const App = () => {
   const { state } = useContext(AuthContext)
@@ -29,6 +29,7 @@ const App = () => {
           <Route
             path='/courses/:selectedCourse'
             element={<SelectedCourse />}
+            loader={CourseByIdLoader(state.jwt)}
           ></Route>
           <Route path='/login' element={<Login />}></Route>
           <Route path='/profile' element={<Profile />}></Route>
